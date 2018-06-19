@@ -30,11 +30,8 @@
             "url": "https://github.com/IsraelDominguez/laravel-themes"
         },
         {
-            "type": "path",
-            "url": "../laravel-logviewer",
-            "options": {
-                "symlink":true
-            }
+            "type": "vcs",
+            "url": "https://github.com/IsraelDominguez/laravel-logviewer"
         }
     ],
     "extra": {
