@@ -1,7 +1,7 @@
 <?php
 return array(
     'admin' => array (
-        'theme_path' => base_path('resources/views/vendor/genetsis-admin'),
+        'theme_path' => base_path('resources/assets/vendor/genetsis-admin'),
         'groups' => array(
             'main_js' => array(
                 'filters' => array(
