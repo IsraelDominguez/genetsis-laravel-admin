@@ -1,0 +1,1 @@
+<li class="{{ (($section=='home')) ? 'navigation__active' : '' }}"><a href="{{ route('adminhome') }}"><i class="zmdi zmdi-home"></i> {{ config('app.name', 'Laravel') }}</a></li>

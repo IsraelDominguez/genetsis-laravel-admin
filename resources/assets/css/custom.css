@@ -1,0 +1,48 @@
+
+.login__block__header > img {
+    width: 145px;
+    height: 31px;
+    box-shadow: none;
+    border-radius: 0px;
+}
+
+/* DATA TABLE STYLES */
+.dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 80px;
+    margin-left: -125px;
+    margin-top: -15px;
+    padding: 15px 0 30px 0;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #444;
+    font-size: 14px;
+    background: url("../img/datatables/loading_bar.gif") no-repeat center 38px #fff;
+    box-shadow: 2px 2px 5px #444;
+    -moz-box-shadow: 2px 2px 5px #444;
+    -webkit-box-shadow: 2px 2px 5px #444;
+    z-index: 9999;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+    cursor: pointer;
+}
+
+table.dataTable thead .sorting { background: url('../img/datatables/sort_both.png') no-repeat center right; }
+table.dataTable thead .sorting_asc { background: url('../img/datatables/sort_asc.png') no-repeat center right; }
+table.dataTable thead .sorting_desc { background: url('../img/datatables/sort_desc.png') no-repeat center right; }
+
+table.dataTable thead .sorting_asc_disabled { background: url('../img/datatables/sort_asc_disabled.png') no-repeat center right; }
+table.dataTable thead .sorting_desc_disabled { background: url('../img/datatables/sort_desc_disabled.png') no-repeat center right; }
+
+table.dataTable th:active {
+    outline: none;
+}
+
