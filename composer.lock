@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a378e92eb2b72fcc92eb2c695a3ef5ae",
+    "content-hash": "57957362c58273142c68e35266626839",
     "packages": [
         {
             "name": "IsraelDominguez/laravel-themes",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/IsraelDominguez/laravel-themes.git",
-                "reference": "7dcf6504b656c9209c2fd7f5c264cfd47db817af"
+                "reference": "9daa56f4229ee633a9bb2fe8c03cc527ed23eb68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/IsraelDominguez/laravel-themes/zipball/7dcf6504b656c9209c2fd7f5c264cfd47db817af",
-                "reference": "7dcf6504b656c9209c2fd7f5c264cfd47db817af",
+                "url": "https://api.github.com/repos/IsraelDominguez/laravel-themes/zipball/9daa56f4229ee633a9bb2fe8c03cc527ed23eb68",
+                "reference": "9daa56f4229ee633a9bb2fe8c03cc527ed23eb68",
                 "shasum": ""
             },
             "require": {
@@ -26,7 +26,7 @@
                 "leafo/scssphp": "~0.1",
                 "meenie/javascript-packer": "^1.1",
                 "mrclay/minify": "<2.3",
-                "natxet/cssmin": "3.0.4",
+                "natxet/cssmin": "3.0.6",
                 "ptachoire/cssembed": "~1.0"
             },
             "require-dev": {
@@ -62,7 +62,53 @@
                 "source": "https://github.com/IsraelDominguez/laravel-themes/tree/master",
                 "issues": "https://github.com/IsraelDominguez/laravel-themes/issues"
             },
-            "time": "2018-06-13T15:47:28+00:00"
+            "time": "2018-06-19T08:02:45+00:00"
+        },
+        {
+            "name": "israeldominguez/laravel-logviewer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IsraelDominguez/laravel-logviewer.git",
+                "reference": "7dcf269378ef625adf42b6d3d5bc01824e20c3f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IsraelDominguez/laravel-logviewer/zipball/7dcf269378ef625adf42b6d3d5bc01824e20c3f7",
+                "reference": "7dcf269378ef625adf42b6d3d5bc01824e20c3f7",
+                "shasum": ""
+            },
+            "require-dev": {
+                "illuminate/support": "~5.5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Genetsis\\LogViewer\\Providers\\LogViewerServiceProvider"
+                    ],
+                    "aliases": {
+                        "Logviewer": "Genetsis\\LogViewer\\Facades\\LogViewerFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Genetsis\\LogViewer\\": "src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "idominguez",
+                    "email": "israel.dominguez.garcia@gmail.com"
+                }
+            ],
+            "description": "Log viewer for Genetsis Admin package",
+            "support": {
+                "source": "https://github.com/IsraelDominguez/laravel-logviewer/tree/master",
+                "issues": "https://github.com/IsraelDominguez/laravel-logviewer/issues"
+            },
+            "time": "2018-06-19T08:11:06+00:00"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -318,16 +364,16 @@
         },
         {
             "name": "natxet/CssMin",
-            "version": "v3.0.4",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/natxet/CssMin.git",
-                "reference": "92de3fe3ccb4f8298d31952490ef7d5395855c39"
+                "reference": "d5d9f4c3e5cedb1ae96a95a21731f8790e38f1dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/natxet/CssMin/zipball/92de3fe3ccb4f8298d31952490ef7d5395855c39",
-                "reference": "92de3fe3ccb4f8298d31952490ef7d5395855c39",
+                "url": "https://api.github.com/repos/natxet/CssMin/zipball/d5d9f4c3e5cedb1ae96a95a21731f8790e38f1dd",
+                "reference": "d5d9f4c3e5cedb1ae96a95a21731f8790e38f1dd",
                 "shasum": ""
             },
             "require": {
@@ -361,7 +407,7 @@
                 "css",
                 "minify"
             ],
-            "time": "2015-09-25T11:13:11+00:00"
+            "time": "2018-01-09T11:15:01+00:00"
         },
         {
             "name": "ptachoire/cssembed",
@@ -1103,16 +1149,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.29.2",
+            "version": "1.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "ed6aa898982f441ccc9b2acdec51490f2bc5d337"
+                "reference": "863a1a651ea324e1838da3a52753a4239b9d4bea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/ed6aa898982f441ccc9b2acdec51490f2bc5d337",
-                "reference": "ed6aa898982f441ccc9b2acdec51490f2bc5d337",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/863a1a651ea324e1838da3a52753a4239b9d4bea",
+                "reference": "863a1a651ea324e1838da3a52753a4239b9d4bea",
                 "shasum": ""
             },
             "require": {
@@ -1147,7 +1193,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-05-29T15:23:46+00:00"
+            "time": "2018-06-15T11:52:26+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1976,7 +2022,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "israeldominguez/laravel-themes": 20
+        "israeldominguez/laravel-themes": 20,
+        "israeldominguez/laravel-logviewer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
