@@ -11,7 +11,7 @@
     "require": {
         "php": "^7.0",
         "IsraelDominguez/laravel-themes": "dev-master",
-        "israeldominguez/laravel-logviewer": "dev-master"
+        "IsraelDominguez/laravel-logviewer": "dev-master"
     },
     "require-dev": {
         "illuminate/support": "~5.5.0",
