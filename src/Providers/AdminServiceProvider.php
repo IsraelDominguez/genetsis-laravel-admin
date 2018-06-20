@@ -11,7 +11,7 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * Bootstrap the application services.
@@ -20,7 +20,11 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
+        $this->handleRoutes();
+        $this->publishResources();
+        $this->handleCommands();
 
+        \AdminMenu::add('genetsis-admin::partials.admin_menu');
     }
 
     /**
@@ -30,18 +34,9 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->handleRoutes();
-        $this->publishResources();
-        $this->handleCommands();
-
         $this->app->singleton('AdminMenu', function(){
             return new AdminMenu();
         });
-
-        \AdminMenu::add('genetsis-admin::partials.admin_menu');
-
-//        $admin_menu = $this->app->make('AdminMenu');
-//        $admin_menu->add('genetsis-admin::partials.admin_menu');
     }
 
     private function handleRoutes() {
