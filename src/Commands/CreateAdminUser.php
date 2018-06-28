@@ -44,7 +44,7 @@ class CreateAdminUser extends Command
         try {
 
             if ($this->confirm('Do you wish to create the Default Admin User?')) {
-                Artisan::call('db:seed', ['--class' => UsersTableSeeder::class]);
+                Artisan::call('db:seed', ['--class' => UsersTableSeeder::class, '--force' => true]);
             } else {
                 $email = $this->ask('What is Admin User email?');
                 $name = $this->ask('What is Admin User Full name?', false);
