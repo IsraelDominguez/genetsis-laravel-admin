@@ -45,15 +45,17 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
     }
 
     private function publishResources() {
-        $this->publishes([
-            __DIR__.'/../../config/admin_theme.php' => config_path('admin_theme.php')
-        ], 'config');
-
-
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'genetsis-admin');
-        $this->publishes([
-            __DIR__.'/../../resources/assets' => resource_path('assets/vendor/genetsis-admin/admin'),
-        ]);
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../../config/admin_theme.php' => config_path('admin_theme.php')
+            ], 'config');
+
+            $this->publishes([
+                __DIR__ . '/../../resources/assets' => resource_path('assets/vendor/genetsis-admin/admin'),
+            ]);
+        }
     }
 
     private function handleCommands() {
