@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": "^7.0",
-        "IsraelDominguez/laravel-themes": "dev-master"
+        "IsraelDominguez/laravel-themes": "dev-master",
+        "IsraelDominguez/laravel-logviewer": "dev-master"
     },
     "require-dev": {
         "illuminate/support": "~5.5.0",
@@ -27,6 +28,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/IsraelDominguez/laravel-themes"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/IsraelDominguez/laravel-logviewer"
         }
     ],
     "extra": {
