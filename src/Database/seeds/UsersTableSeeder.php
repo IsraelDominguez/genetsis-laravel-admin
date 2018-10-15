@@ -14,9 +14,13 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            'id' => 1,
             'name' => 'Data Marketing',
             'email' => 'datamarketing@genetsis.com',
             'password' => bcrypt('genetsis'),
         ]);
+
+        $user = \App\User::find(1);
+        $user->assignRole('SuperAdmin');
     }
 }

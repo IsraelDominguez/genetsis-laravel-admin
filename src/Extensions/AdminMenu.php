@@ -10,14 +10,16 @@ class AdminMenu {
 
     }
 
-    public function add($new_item) {
-        $this->menu[] = $new_item;
+    public function add($new_item, array $data = []) {
+        $element['view'] = $new_item;
+        $element['data'] = $data;
+        $this->menu[] = $element;
     }
 
     public function show() {
         $contents = '';
         foreach ($this->menu as $item) {
-            $view = View::make($item);
+            $view = View::make($item['view'], $item['data']);
 
             $contents .= $view->render();
         }

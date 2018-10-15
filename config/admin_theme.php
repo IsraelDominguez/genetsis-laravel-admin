@@ -2,6 +2,7 @@
 return array(
     'admin' => array (
         'theme_path' => base_path('resources/assets/vendor/genetsis-admin'),
+        'theme_assets_path' => '/',
         'groups' => array(
             'main_js' => array(
                 'filters' => array(
@@ -34,6 +35,8 @@ return array(
                     'vendors/bower_components/flot.orderbars/js/jquery.flot.orderBars.js',
                     // Alerts
                     'vendors/bower_components/sweetalert2/dist/sweetalert2.min.js',
+                    // ColorPicker
+                    'vendors/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js',
                     'js/app.min.js',
                     'js/custom.js'
                 ),
@@ -51,6 +54,7 @@ return array(
                     'vendors/bower_components/flatpickr/dist/flatpickr.min.css',
                     'vendors/bower_components/flatpickr/dist/plugins/confirmDate/confirmDate.css',
                     'vendors/bower_components/sweetalert2/dist/sweetalert2.css',
+                    'vendors/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css',
                     'css/app.css',
                     'css/custom.css',
                 ),
