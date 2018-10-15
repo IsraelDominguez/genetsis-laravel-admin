@@ -14,7 +14,7 @@ php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProv
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="migrations"
 php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="config"
 
-php artisan migrate
+php artisan migrate --seed
 
 php artisan genetsis-admin:create-user
 
