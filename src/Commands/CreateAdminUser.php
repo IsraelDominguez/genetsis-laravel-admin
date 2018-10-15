@@ -2,6 +2,8 @@
 
 namespace Genetsis\Admin\Commands;
 
+use App\User;
+use Genetsis\Admin\Database\Seeds\RolesSeeder;
 use Genetsis\Admin\Database\Seeds\UsersTableSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -42,6 +44,7 @@ class CreateAdminUser extends Command
     public function handle()
     {
         try {
+            Artisan::call('db:seed', ['--class' => RolesSeeder::class, '--force' => true]);
 
             if ($this->confirm('Do you wish to create the Default Admin User?')) {
                 Artisan::call('db:seed', ['--class' => UsersTableSeeder::class, '--force' => true]);
@@ -59,15 +62,13 @@ class CreateAdminUser extends Command
                     throw new \Exception($validator->messages());
                 }
 
-//                $this->info($email);
-//                $this->info($name);
-//                $this->info(bcrypt($password));
+                $user = new User();
+                $user->email = $email;
+                $user->name = $name;
+                $user->password = bcrypt($password);
+                $user->save();
 
-                DB::table('users')->insert([
-                    'name' => $name,
-                    'email' => $email,
-                    'password' => bcrypt($password),
-                ]);
+                $user->assignRole('SuperAdmin');
             }
 
             $this->info('Admin User created');

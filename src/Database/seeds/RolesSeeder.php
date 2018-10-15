@@ -1,4 +1,4 @@
-<?php
+<?php namespace Genetsis\Admin\Database\Seeds;
 
 use Illuminate\Database\Seeder;
 
