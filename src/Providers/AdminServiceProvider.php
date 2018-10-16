@@ -3,6 +3,9 @@
 use Genetsis\Admin\Commands\CreateAdminUser;
 use Genetsis\Admin\Commands\GenetsisAdminInstall;
 use Genetsis\Admin\Extensions\AdminMenu;
+use Spatie\Permission\Middlewares\PermissionMiddleware;
+use Spatie\Permission\Middlewares\RoleMiddleware;
+use Spatie\Permission\Middlewares\RoleOrPermissionMiddleware;
 
 class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -23,6 +26,10 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->handleRoutes();
         $this->publishResources();
         $this->handleCommands();
+
+        $this->app['router']->aliasMiddleware('role', RoleMiddleware::class);
+        $this->app['router']->aliasMiddleware('permission', PermissionMiddleware::class);
+        $this->app['router']->aliasMiddleware('role_or_permission', RoleOrPermissionMiddleware::class);
 
         \AdminMenu::add('genetsis-admin::partials.admin_menu');
     }
