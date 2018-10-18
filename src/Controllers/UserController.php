@@ -1,9 +1,8 @@
 <?php namespace Genetsis\Admin\Controllers;
 
-use App\User;
-use Genetsis\Admin\Controllers\AdminController;
+use Genetsis\Admin\Models\Role;
+use Genetsis\Admin\Models\User;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 
 class UserController extends AdminController
 {
