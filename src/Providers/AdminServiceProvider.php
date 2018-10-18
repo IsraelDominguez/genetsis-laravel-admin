@@ -31,7 +31,8 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app['router']->aliasMiddleware('permission', PermissionMiddleware::class);
         $this->app['router']->aliasMiddleware('role_or_permission', RoleOrPermissionMiddleware::class);
 
-        \AdminMenu::add('genetsis-admin::partials.admin_menu');
+        \AdminMenu::add('genetsis-admin::partials.admin_menu', []);
+        \AdminMenu::add('genetsis-admin::partials.menu.users_menu', []);
     }
 
     /**

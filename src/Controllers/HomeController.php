@@ -1,6 +1,4 @@
-<?php
-
-namespace Genetsis\Admin\Controllers;
+<?php namespace Genetsis\Admin\Controllers;
 
 class HomeController extends AdminController
 {

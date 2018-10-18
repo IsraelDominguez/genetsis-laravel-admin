@@ -1,6 +1,4 @@
-<?php
-
-namespace Genetsis\Admin\Controllers;
+<?php namespace Genetsis\Admin\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
