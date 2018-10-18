@@ -21,6 +21,4 @@ class User extends \App\User
      * @var bool
      */
     protected static $logOnlyDirty = true;
-
-
 }
