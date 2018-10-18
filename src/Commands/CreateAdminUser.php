@@ -62,7 +62,7 @@ class CreateAdminUser extends Command
                     throw new \Exception($validator->messages());
                 }
 
-                $user = new User();
+                $user = new \Genetsis\Admin\Models\User();
                 $user->email = $email;
                 $user->name = $name;
                 $user->password = bcrypt($password);
