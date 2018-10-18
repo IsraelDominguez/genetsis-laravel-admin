@@ -1,6 +1,7 @@
 <?php
 namespace Genetsis\Admin\Database\Seeds;
 
+use Genetsis\Admin\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('genetsis'),
         ]);
 
-        $user = \App\User::find(1);
+        $user = User::find(1);
         $user->assignRole('SuperAdmin');
     }
 }
