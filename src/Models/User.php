@@ -1,4 +1,4 @@
-<?php namespace Genetsis\Admin\Facades;
+<?php namespace Genetsis\Admin\Models;
 
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
