@@ -44,8 +44,6 @@ class CreateAdminUser extends Command
     public function handle()
     {
         try {
-            Artisan::call('db:seed', ['--class' => RolesSeeder::class, '--force' => true]);
-
             if ($this->confirm('Do you wish to create the Default Admin User?')) {
                 Artisan::call('db:seed', ['--class' => UsersTableSeeder::class, '--force' => true]);
             } else {

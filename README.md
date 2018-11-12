@@ -1,4 +1,4 @@
-# laravel-genetsis-Admin
+s# laravel-genetsis-Admin
 
 Publish config theme and then add the themes, Default Roles: SuperAdmin, Admin
 
