@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
-class CreateAdminUser extends Command
+class InstallAdmin extends Command
 {
     /**
      * The name and signature of the console command.
