@@ -2,6 +2,7 @@
 
 use Genetsis\Admin\Commands\CreateAdminUser;
 use Genetsis\Admin\Commands\GenetsisAdminInstall;
+use Genetsis\Admin\Commands\InstallAdmin;
 use Genetsis\Admin\Extensions\AdminMenu;
 use Spatie\Permission\Middlewares\PermissionMiddleware;
 use Spatie\Permission\Middlewares\RoleMiddleware;
@@ -69,7 +70,8 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
     private function handleCommands() {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                CreateAdminUser::class
+                CreateAdminUser::class,
+                InstallAdmin::class
             ]);
         }
     }
