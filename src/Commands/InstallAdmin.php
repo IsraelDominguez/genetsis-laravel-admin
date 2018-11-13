@@ -16,7 +16,7 @@ class InstallAdmin extends Command
      *
      * @var string
      */
-    protected $signature = 'genetsis-admin:install';
+    protected $signature = 'genetsis-admin:init';
 
     /**
      * The console command description.
