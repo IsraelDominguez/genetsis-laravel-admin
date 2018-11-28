@@ -41,7 +41,6 @@
     <!-- Scripts -->
     <script src="{{ Asset::url('main_js') }}"></script>
 
-    @section('custom-js')
-    @show
+    @stack('custom-js')
 </body>
 </html>
