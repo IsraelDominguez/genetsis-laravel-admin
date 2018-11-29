@@ -146,8 +146,9 @@ $(document).ready(function () {
 
 var num_extra_fields = 0;
 var num_rewards = 0;
+var extra_fields_types = [];
 
-function add_extra_field(key, name) {
+function add_extra_field(key, name, type) {
     num_extra_fields += 1;
 
     var button = '<button class="btn btn-danger extra-field-remove-me" type="button" id="'+num_extra_fields+'"> <i class="zmdi zmdi-minus" aria-hidden="true"></i> </button>';
@@ -155,14 +156,29 @@ function add_extra_field(key, name) {
         button = '<button class="btn btn-success" type="button" id="new_extra_field"> <i class="zmdi zmdi-plus" aria-hidden="true"></i> </button>';
     }
 
-    var text = '<div class="col-xs-5 col-md-5">'+
+    var text2 = "";
+    extra_fields_types.forEach(function(e) {
+        selected = (type == e) ? 'selected' : '';
+        text2 = text2 + '<option value="' + e + '" '+ selected +'>'+ e.toUpperCase() +'</option>';
+    });
+
+    var text = '<div class="col-xs-3 col-md-3">'+
         '<div class="form-group">'+
         '<label>Key</label>'+
         '<input type="text" class="form-control" name="extra_field_keys[]" id="extra_field_keys" value="'+key+'">'+
         '<i class="form-group__bar"></i>'+
         '</div>'+
         '</div>'+
-        '<div class="col-xs-5 col-md-5">'+
+        '<div class="col-xs-3 col-md-3">'+
+        '<div class="form-group">'+
+        '<label>Type</label>'+
+        '<select class="form-control" name="extra_field_types[]" id="extra_field_types">'+
+        text2 +
+        '</select>'+
+        '<i class="form-group__bar"></i>'+
+        '</div>'+
+        '</div>'+
+        '<div class="col-xs-4 col-md-4">'+
         '<div class="form-group">'+
         '<label>Name</label>'+
         '<div class="input-group">'+
@@ -187,7 +203,6 @@ function add_extra_field(key, name) {
         $('.extra-field-remove-'+fieldNum).remove();
     });
 }
-
 
 function add_reward(key, name, stock) {
     num_rewards += 1;
