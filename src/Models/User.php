@@ -8,6 +8,8 @@ class User extends \App\User
     use HasRoles;
     use LogsActivity;
 
+    protected $guard_name = 'web';
+
     /**
      * The attributes used to be logged y LogsActivity
      *
