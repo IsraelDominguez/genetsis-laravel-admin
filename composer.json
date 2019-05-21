@@ -1,5 +1,5 @@
 {
-    "name": "IsraelDominguez/genetsis-laravel-admin",
+    "name": "israeldominguez/genetsis-laravel-admin",
     "description": "Admin Package for Genetsis webs",
     "type": "library",
     "authors": [
@@ -12,8 +12,8 @@
         "php": "^7.0",
         "spatie/laravel-activitylog": "dev-master",
         "spatie/laravel-permission": "dev-master",
-        "IsraelDominguez/laravel-themes": "dev-master",
-        "IsraelDominguez/laravel-logviewer": "dev-master"
+        "israeldominguez/laravel-themes": "dev-master",
+        "israeldominguez/laravel-logviewer": "dev-master"
     },
     "require-dev": {
         "illuminate/support": "~5.5.0",
@@ -29,11 +29,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/IsraelDominguez/laravel-themes"
+            "url": "https://github.com/israeldominguez/laravel-themes"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/IsraelDominguez/laravel-logviewer"
+            "url": "https://github.com/israeldominguez/laravel-logviewer"
         }
     ],
     "extra": {
