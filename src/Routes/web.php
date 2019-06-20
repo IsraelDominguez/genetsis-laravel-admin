@@ -8,8 +8,8 @@ Route::group(['middleware' => ['web']], function () {
             Route::group(['middleware' => ['role:SuperAdmin']], function () {
                 Route::get('users/get', 'UserController@get')->name('users.api');
                 Route::resource('users', 'UserController', [
-                    'only' => ['index', 'edit', 'create', 'store', 'update', 'destroy'],
-                    'names' => ['index' => 'users.home']
+                    'only' => ['index', 'edit', 'create', 'store', 'update', 'destroy', 'show'],
+                    'names' => ['index' => 'users.home', 'show' => 'users.show']
                 ]);
             });
         });
