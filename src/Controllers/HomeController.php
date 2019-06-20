@@ -16,6 +16,9 @@ class HomeController extends AdminController
      */
     public function index()
     {
+        if (view()->exists('pages.home')) {
+            return view('pages.home');
+        }
         return view('genetsis-admin::pages.home');
     }
 }
