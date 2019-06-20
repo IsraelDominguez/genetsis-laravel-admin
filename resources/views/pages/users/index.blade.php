@@ -14,7 +14,7 @@
 
 @section('section-content')
     <div class="table-responsive">
-        <table class="table table-sm table-striped mb-3">
+        <table id="data-users"  class="table table-bordered table-striped">
             <thead class="thead-inverse">
                 <tr>
                     <th>#</th>
@@ -24,42 +24,95 @@
                     <th width="280px">Action</th>
                 </tr>
             </thead>
-            <tbody>
-            @foreach ($data as $user)
-                <tr>
-                    <th scope="row">{{ ++$i }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>
-                        @if(!empty($user->getRoleNames()))
-                            @foreach($user->getRoleNames() as $v)
-                                <label class="badge badge-success">{{ $v }}</label>
-                            @endforeach
-                        @endif
-                    </td>
-                    <td>
-                        <div class="actions">
-                            <a class="actions__item zmdi zmdi-edit" href="{{ route('users.edit',$user->id) }}"></a>
-                            <a class="actions__item zmdi zmdi-delete" onclick="javascript:$('#form-{{$user->id}}').submit();" id="del"></a>
-                        </div>
-                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" id="form-{{$user->id}}">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
+{{--            <tbody>--}}
+{{--            @foreach ($data as $user)--}}
+{{--                <tr>--}}
+{{--                    <th scope="row">{{ ++$i }}</th>--}}
+{{--                    <td>{{ $user->name }}</td>--}}
+{{--                    <td>{{ $user->email }}</td>--}}
+{{--                    <td>--}}
+{{--                        @if(!empty($user->getRoleNames()))--}}
+{{--                            @foreach($user->getRoleNames() as $v)--}}
+{{--                                <label class="badge badge-success">{{ $v }}</label>--}}
+{{--                            @endforeach--}}
+{{--                        @endif--}}
+{{--                    </td>--}}
+{{--                    <td>--}}
+{{--                        <div class="actions">--}}
+{{--                            <a class="actions__item zmdi zmdi-edit" href="{{ route('users.edit',$user->id) }}"></a>--}}
+{{--                            <a class="actions__item zmdi zmdi-delete" onclick="javascript:$('#form-{{$user->id}}').submit();" id="del"></a>--}}
+{{--                        </div>--}}
+{{--                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" id="form-{{$user->id}}">--}}
+{{--                            {{ csrf_field() }}--}}
+{{--                            {{ method_field('DELETE') }}--}}
+{{--                        </form>--}}
+{{--                    </td>--}}
+{{--                </tr>--}}
+{{--            @endforeach--}}
+{{--            </tbody>--}}
         </table>
     </div>
 @endsection
 
 @push('custom-js')
-    @if ($message = Session::get('success'))
     <script>
         $(document).ready(function() {
-            notify('{{ $message }}');
+
+            var table = $('#data-users').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{route('users.api')}}',
+                columns: [
+                    {data: 'id'},
+                    {data: 'name'},
+                    {data: 'email'},
+                    {data: 'email'},
+                    {data: 'options', name: 'options', orderable: false, searchable: false, className: 'options-actions'},
+                    {data: 'delete', name: 'delete', orderable: false, searchable: false, className: 'options-delete'},
+                ],
+                order: [[0,'desc']]
+            });
+
+            $('#data-users tbody').on('click', 'td.options-delete', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                var id = row.data().id;
+
+                swal({
+                    title: 'Are you sure?',
+                    text: 'You will not be able to recover this User!',
+                    type: 'warning',
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonClass: 'btn btn-danger',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonClass: 'btn btn-secondary'
+                }).then(function(){
+                    delete_url = '{{route('users.destroy', ':id')}}';
+                    delete_url = delete_url.replace(':id', id);
+
+                    $.ajax({
+                        url: delete_url,
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (response) {
+                            notify(response.message);
+                            table.ajax.reload();
+                        },
+                        error: function(response) {
+                            notify('An error has ocurred','top','right','','danger');
+                        }
+                    });
+
+
+                }).catch(swal.noop);
+            });
+
+            @if ($message = Session::get('success'))
+                notify('{{ $message }}');
+            @endif
         });
     </script>
-    @endif
 @endpush

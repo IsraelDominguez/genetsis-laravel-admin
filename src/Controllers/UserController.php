@@ -1,8 +1,11 @@
 <?php namespace Genetsis\Admin\Controllers;
 
+use App\Models\Action;
 use Genetsis\Admin\Models\Role;
 use Genetsis\Admin\Models\User;
+use Genetsis\Druid\Rest\RestApi;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class UserController extends AdminController
 {
@@ -24,6 +27,37 @@ class UserController extends AdminController
             ->with('i', ($request->input('page', 1) - 1) * 20);
     }
 
+
+    /**
+     * Api for Datatable - get Users
+     * @return mixed
+     * @throws \Exception
+     */
+    public function get(Request $request) {
+        if ($request->ajax()) {
+            $users = User::all();
+                //->with('druid_app','parties');
+
+            return DataTables::of($users)
+                ->addColumn('options', function ($user) {
+                    return '
+                        <div class="actions" style="width:64px">
+                        <a class="actions__item zmdi zmdi-eye" href="'.route('users.show',$user->id).'"></a>
+                        <a class="actions__item zmdi zmdi-edit" href="'.route('users.edit',$user->id).'"></a>
+                        </div>                        
+                        ';
+                })
+                ->addColumn('delete', function ($user) {
+                    return '
+                        <div class="actions">                                                
+                        <a class="actions__item zmdi zmdi-delete del" data-id="'.$user->id.'"></a>
+                        </div>                        
+                        ';
+                })
+                ->rawColumns(['options','delete'])
+                ->make(true);
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
