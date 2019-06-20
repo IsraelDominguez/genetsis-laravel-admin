@@ -35,8 +35,7 @@ class UserController extends AdminController
      */
     public function get(Request $request) {
         if ($request->ajax()) {
-            $users = User::all();
-                //->with('druid_app','parties');
+            $users = User::with('roles')->get();
 
             return DataTables::of($users)
                 ->addColumn('options', function ($user) {
@@ -47,6 +46,15 @@ class UserController extends AdminController
                         </div>                        
                         ';
                 })
+                ->addColumn('roles', function ($user){
+                    $roles = '';
+                    if(!empty($user->getRoleNames())) {
+                        foreach($user->getRoleNames() as $v) {
+                            $roles .= '<label class="badge badge-success">'.$v.'</label>';
+                        }
+                    }
+                    return $roles;
+                })
                 ->addColumn('delete', function ($user) {
                     return '
                         <div class="actions">                                                
@@ -54,7 +62,7 @@ class UserController extends AdminController
                         </div>                        
                         ';
                 })
-                ->rawColumns(['options','delete'])
+                ->rawColumns(['options','delete','roles'])
                 ->make(true);
         }
     }
@@ -160,16 +168,21 @@ class UserController extends AdminController
 
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * api delete user
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        User::find($id)->delete();
-        return redirect()->route('users.home')
-            ->with('success','User deleted successfully');
+        if ($request->ajax()) {
+            User::findOrFail($id)->delete();
+
+            return response()->json(['Status' => 'Ok', 'message' => 'User Deleted']);
+        } else {
+            return response()->json('Error Deleting', 500);
+        }
     }
 
 }

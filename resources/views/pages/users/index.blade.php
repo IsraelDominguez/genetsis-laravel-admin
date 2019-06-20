@@ -17,41 +17,15 @@
         <table id="data-users"  class="table table-bordered table-striped">
             <thead class="thead-inverse">
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Roles</th>
-                    <th width="280px">Action</th>
+                    <td>#</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Roles</td>
                 </tr>
             </thead>
-{{--            <tbody>--}}
-{{--            @foreach ($data as $user)--}}
-{{--                <tr>--}}
-{{--                    <th scope="row">{{ ++$i }}</th>--}}
-{{--                    <td>{{ $user->name }}</td>--}}
-{{--                    <td>{{ $user->email }}</td>--}}
-{{--                    <td>--}}
-{{--                        @if(!empty($user->getRoleNames()))--}}
-{{--                            @foreach($user->getRoleNames() as $v)--}}
-{{--                                <label class="badge badge-success">{{ $v }}</label>--}}
-{{--                            @endforeach--}}
-{{--                        @endif--}}
-{{--                    </td>--}}
-{{--                    <td>--}}
-{{--                        <div class="actions">--}}
-{{--                            <a class="actions__item zmdi zmdi-edit" href="{{ route('users.edit',$user->id) }}"></a>--}}
-{{--                            <a class="actions__item zmdi zmdi-delete" onclick="javascript:$('#form-{{$user->id}}').submit();" id="del"></a>--}}
-{{--                        </div>--}}
-{{--                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" id="form-{{$user->id}}">--}}
-{{--                            {{ csrf_field() }}--}}
-{{--                            {{ method_field('DELETE') }}--}}
-{{--                        </form>--}}
-{{--                    </td>--}}
-{{--                </tr>--}}
-{{--            @endforeach--}}
-{{--            </tbody>--}}
         </table>
     </div>
+
 @endsection
 
 @push('custom-js')
@@ -66,7 +40,7 @@
                     {data: 'id'},
                     {data: 'name'},
                     {data: 'email'},
-                    {data: 'email'},
+                    {data: 'roles'},
                     {data: 'options', name: 'options', orderable: false, searchable: false, className: 'options-actions'},
                     {data: 'delete', name: 'delete', orderable: false, searchable: false, className: 'options-delete'},
                 ],
