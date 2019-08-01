@@ -7,7 +7,7 @@
 </div>
 
 <div class="header__logo">
-    <a href="{{ url('/') }}"><img src="{{Asset::img('logo.png')}}" alt="{{ config('app.name', 'Laravel') }}"></a>
+    <a href="{{ url('/') }}"><img src="{{Asset::img('logo-text.png')}}" alt="{{ config('app.name', 'Laravel') }}" class="logo-text-header"></a>
 </div>
 
 <ul class="top-nav">

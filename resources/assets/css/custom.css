@@ -46,3 +46,11 @@ table.dataTable th:active {
     outline: none;
 }
 
+.login__block__header > img {
+    height: 35px;
+}
+
+.logo-text-header {
+    height: 35px;
+}
+
