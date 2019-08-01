@@ -13,7 +13,7 @@
     <link href="{{ Asset::url('main_css') }}" rel="stylesheet">
 </head>
 
-<body data-ma-theme="cyan">
+<body data-ma-theme="{{config('theme.color', 'cyan')}}">
 
 <div class="login">
     <div class="login__block active">
