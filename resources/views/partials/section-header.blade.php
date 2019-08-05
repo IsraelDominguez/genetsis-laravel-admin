@@ -1,3 +1,3 @@
 <header class="content__title">
-    <h1>{{ str_plural($section) }}</h1>
+    <h1>{{ \Str::plural($section) }}</h1>
 </header>
