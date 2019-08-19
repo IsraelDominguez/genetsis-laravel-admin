@@ -266,3 +266,12 @@ function slugify(string) {
         .replace(/^-+/, '') // Trim - from start of text
         .replace(/-+$/, '') // Trim - from end of text
 }
+
+
+$(document).ready(function() {
+    $("body").on("click", ".navigation__sub > a", function (a) {
+        if (a.target.getAttribute('href').trim().length > 0) {
+            location.href = a.target.href;
+        }
+    });
+});

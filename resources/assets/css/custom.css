@@ -54,3 +54,10 @@ table.dataTable th:active {
     height: 35px;
 }
 
+.colorpicker-saturation {
+    width: 150px !important;
+    height: 150px !important;
+}
+.colorpicker.colorpicker-horizontal .colorpicker-color {
+    width: 150px;
+}

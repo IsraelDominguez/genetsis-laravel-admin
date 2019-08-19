@@ -703,39 +703,39 @@
     hexNumberSignPrefix: true, // put a '#' (number sign) before hex strings
     sliders: {
       saturation: {
-        maxLeft: 100,
-        maxTop: 100,
+        maxLeft: 150,
+        maxTop: 150,
         callLeft: 'setSaturation',
         callTop: 'setBrightness'
       },
       hue: {
         maxLeft: 0,
-        maxTop: 100,
+        maxTop: 150,
         callLeft: false,
         callTop: 'setHue'
       },
       alpha: {
         maxLeft: 0,
-        maxTop: 100,
+        maxTop: 150,
         callLeft: false,
         callTop: 'setAlpha'
       }
     },
     slidersHorz: {
       saturation: {
-        maxLeft: 100,
-        maxTop: 100,
+        maxLeft: 150,
+        maxTop: 150,
         callLeft: 'setSaturation',
         callTop: 'setBrightness'
       },
       hue: {
-        maxLeft: 100,
+        maxLeft: 150,
         maxTop: 0,
         callLeft: 'setHue',
         callTop: false
       },
       alpha: {
-        maxLeft: 100,
+        maxLeft: 150,
         maxTop: 0,
         callLeft: 'setAlpha',
         callTop: false
