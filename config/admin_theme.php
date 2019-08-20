@@ -6,7 +6,7 @@ return array(
         'groups' => array(
             'main_js' => array(
                 'filters' => array(
-                    'js_min'
+                    //'js_min'
                 ),
                 'assets' => array(
                     'vendors/bower_components/jquery/dist/jquery.min.js',
@@ -33,6 +33,9 @@ return array(
                     'vendors/bower_components/flot/jquery.flot.resize.js',
                     'vendors/bower_components/flot.curvedlines/curvedLines.js',
                     'vendors/bower_components/flot.orderbars/js/jquery.flot.orderBars.js',
+                    'vendors/bower_components/flot.barlabels/jquery.flot.barlabels.js',
+                    // Easy Chart
+                    'vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js',
                     // Alerts
                     'vendors/bower_components/sweetalert2/dist/sweetalert2.min.js',
                     // ColorPicker
