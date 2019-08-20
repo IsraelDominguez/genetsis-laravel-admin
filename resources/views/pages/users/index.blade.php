@@ -4,7 +4,7 @@
 @section('section-card-header')
     @component('genetsis-admin::partials.card-header')
         @slot('card_title')
-            {{ \Str::plural(\Str::title(($section)) }} List
+            {{ \Str::plural(\Str::title($section)) }} List
         @endslot
 
         <a class="btn btn-success btn--icon-text waves-effect" href="{{ route(\Str::plural($section).'.create') }}"><i class="zmdi zmdi-plus"></i> New {{ \Str::title($section) }}</a>

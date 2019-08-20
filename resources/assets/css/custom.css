@@ -61,3 +61,13 @@ table.dataTable th:active {
 .colorpicker.colorpicker-horizontal .colorpicker-color {
     width: 150px;
 }
+
+
+.options-actions {
+    width:85px;
+    padding-right: 0px !important;
+}
+
+.options-delete {
+    padding-left: 0px !important;
+}
