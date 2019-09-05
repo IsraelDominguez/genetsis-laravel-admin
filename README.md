@@ -16,6 +16,8 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 
 php artisan migrate --seed
 
+php artisan genetsis-admin:init
+
 php artisan genetsis-admin:create-user
 
 ## Usage
