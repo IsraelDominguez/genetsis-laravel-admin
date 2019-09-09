@@ -40,6 +40,8 @@ return array(
                     'vendors/bower_components/sweetalert2/dist/sweetalert2.min.js',
                     // ColorPicker
                     'vendors/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js',
+                    // Validation
+                    'vendors/jquery-validation/jquery.validate.js',
                     'js/app.min.js',
                     'js/custom.js'
                 ),
