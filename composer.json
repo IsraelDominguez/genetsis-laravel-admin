@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "^7.0",
-        "spatie/laravel-activitylog": "dev-master",
+        "spatie/laravel-activitylog": "3.8.0",
         "spatie/laravel-permission": "dev-master",
         "israeldominguez/laravel-themes": "dev-master",
         "israeldominguez/laravel-logviewer": "dev-master",
