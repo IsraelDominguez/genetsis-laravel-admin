@@ -46,6 +46,10 @@ table.dataTable th:active {
     outline: none;
 }
 
+.table-responsive {
+    overflow-y: hidden;
+}
+
 .login__block__header > img {
     height: 35px;
 }
