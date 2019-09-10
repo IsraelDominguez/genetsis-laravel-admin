@@ -5,6 +5,7 @@ use Genetsis\Admin\Models\Role;
 use Genetsis\Admin\Models\User;
 use Genetsis\Druid\Rest\RestApi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
@@ -36,7 +37,13 @@ class UserController extends AdminController
      */
     public function get(Request $request) {
         if ($request->ajax()) {
-            $users = User::with('roles')->get();
+            $users = User::with('roles')->get()->filter(function ($user){
+                if (Auth::user()->hasRole('SuperAdmin')) {
+                    return true;
+                } else {
+                    return !$user->hasRole(['SuperAdmin','Admin']);
+                }
+            })->all();
 
             return DataTables::of($users)
                 ->addColumn('options', function ($user) {
@@ -78,7 +85,7 @@ class UserController extends AdminController
             if (Auth::user()->hasRole('SuperAdmin')) {
                 return true;
             } else {
-                return Auth::user()->getRoleNames()->contains($role->name);
+                return !in_array($role->name, ['SuperAdmin', 'Admin']);
             }
         })->pluck('name', 'name')->all();
 
@@ -139,7 +146,7 @@ class UserController extends AdminController
             if (Auth::user()->hasRole('SuperAdmin')) {
                 return true;
             } else {
-                return Auth::user()->getRoleNames()->contains($role->name);
+                return !in_array($role->name, ['SuperAdmin', 'Admin']);
             }
         })->pluck('name', 'name')->all();
 
