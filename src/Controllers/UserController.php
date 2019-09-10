@@ -5,6 +5,7 @@ use Genetsis\Admin\Models\Role;
 use Genetsis\Admin\Models\User;
 use Genetsis\Druid\Rest\RestApi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class UserController extends AdminController
@@ -40,8 +41,7 @@ class UserController extends AdminController
             return DataTables::of($users)
                 ->addColumn('options', function ($user) {
                     return '
-                        <div class="actions" style="width:64px">
-                        <a class="actions__item zmdi zmdi-eye" href="'.route('users.show',$user->id).'"></a>
+                        <div class="actions" style="width:40px">
                         <a class="actions__item zmdi zmdi-edit" href="'.route('users.edit',$user->id).'"></a>
                         </div>                        
                         ';
@@ -74,7 +74,14 @@ class UserController extends AdminController
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::all()->filter(function($role){
+            if (Auth::user()->hasRole('SuperAdmin')) {
+                return true;
+            } else {
+                return Auth::user()->getRoleNames()->contains($role->name);
+            }
+        })->pluck('name', 'name')->all();
+
         return view('genetsis-admin::pages.users.create',compact('roles'));
     }
 
@@ -128,7 +135,14 @@ class UserController extends AdminController
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::all()->filter(function($role){
+            if (Auth::user()->hasRole('SuperAdmin')) {
+                return true;
+            } else {
+                return Auth::user()->getRoleNames()->contains($role->name);
+            }
+        })->pluck('name', 'name')->all();
+
         $userRole = $user->roles->pluck('name','name')->all();
 
         return view('genetsis-admin::pages.users.edit',compact('user','roles','userRole'));

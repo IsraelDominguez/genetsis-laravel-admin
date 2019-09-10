@@ -10,21 +10,21 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
-class InstallAdmin extends Command
+class CreatePermissions extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'genetsis-admin:init';
+    protected $signature = 'genetsis-admin:create-permissions';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Initial setup: create Roles ';
+    protected $description = 'Create permissions: execute in old admins';
 
     /**
      * Create a new command instance.
@@ -45,9 +45,6 @@ class InstallAdmin extends Command
     public function handle()
     {
         try {
-            Artisan::call('db:seed', ['--class' => RolesSeeder::class, '--force' => true]);
-
-            $this->info('Roles created');
 
             Artisan::call('db:seed', ['--class' => PermissionSeeder::class, '--force' => true]);
             $this->info('Permissions created');

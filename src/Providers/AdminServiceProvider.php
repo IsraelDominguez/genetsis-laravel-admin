@@ -1,6 +1,7 @@
 <?php namespace Genetsis\Admin\Providers;
 
 use Genetsis\Admin\Commands\CreateAdminUser;
+use Genetsis\Admin\Commands\CreatePermissions;
 use Genetsis\Admin\Commands\GenetsisAdminInstall;
 use Genetsis\Admin\Commands\InstallAdmin;
 use Genetsis\Admin\Extensions\AdminMenu;
@@ -71,7 +72,8 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 CreateAdminUser::class,
-                InstallAdmin::class
+                InstallAdmin::class,
+                CreatePermissions::class
             ]);
         }
     }

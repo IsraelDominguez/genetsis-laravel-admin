@@ -7,7 +7,9 @@
             {{ \Str::plural(\Str::title($section)) }} List
         @endslot
 
-        <a class="btn btn-success btn--icon-text waves-effect" href="{{ route(\Str::plural($section).'.create') }}"><i class="zmdi zmdi-plus"></i> New {{ \Str::title($section) }}</a>
+        @can('manage_users')
+            <a class="btn btn-success btn--icon-text waves-effect" href="{{ route(\Str::plural($section).'.create') }}"><i class="zmdi zmdi-plus"></i> New {{ \Str::title($section) }}</a>
+        @endcan
     @endcomponent
 @endsection
 

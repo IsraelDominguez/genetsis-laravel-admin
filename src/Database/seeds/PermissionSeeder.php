@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
-class RolesSeeder extends Seeder
+class PermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +12,7 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        $role_superadmin = \Spatie\Permission\Models\Role::create(['name' => 'SuperAdmin']);
-        \Spatie\Permission\Models\Role::create(['name' => 'Admin']);
+        $role_superadmin = \Spatie\Permission\Models\Role::findByName('SuperAdmin');
 
         Permission::create(['name' => 'manage_users']);
 
