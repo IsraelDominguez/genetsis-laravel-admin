@@ -369,3 +369,34 @@ $.fn.showMemo = function () {
         $("#flot-memo").html(html.join(''));
     });
 }
+
+
+/**---------------------------
+ *  JQuery Validation Defaults
+ */
+jQuery.validator.setDefaults({
+    focusInvalid: false,
+    errorElement: "label",
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-danger');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-danger');
+    },
+    errorClass: 'form-control-label',
+    errorPlacement: function(error, element) {
+        if(element.parent('.input-group').length) {
+            error.insertBefore(element.parent());
+        } else {
+            error.insertBefore(element);
+        }
+    },
+    invalidHandler: function(form, validator) {
+        if (!validator.numberOfInvalids())
+            return;
+
+        $('html, body').animate({
+            scrollTop: $(validator.errorList[0].element).offset().top - 100
+        }, 500);
+    }
+});
