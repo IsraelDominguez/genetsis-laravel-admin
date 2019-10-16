@@ -42,6 +42,9 @@ return array(
                     'vendors/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js',
                     // Validation
                     'vendors/jquery-validation/jquery.validate.js',
+                    'vendors/jquery-validation/additional-methods.js',
+                    // Alpaca
+                    'js/alpaca.js',
                     'js/app.min.js',
                     'js/custom.js'
                 ),
