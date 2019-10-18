@@ -34,7 +34,9 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app['router']->aliasMiddleware('role_or_permission', RoleOrPermissionMiddleware::class);
 
         \AdminMenu::add('genetsis-admin::partials.admin_menu', [], 1);
-        \AdminMenu::add('genetsis-admin::partials.menu.users_menu', [], 5);
+
+        if (config('genetsis_admin.manage_admin_users'))
+            \AdminMenu::add('genetsis-admin::partials.menu.users_menu', [], 5);
     }
 
     /**
@@ -59,7 +61,8 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../../config/admin_theme.php' => config_path('admin_theme.php')
+                __DIR__ . '/../../config/admin_theme.php' => config_path('admin_theme.php'),
+                __DIR__ . '/../../config/genetsis_admin.php' => config_path('genetsis_admin.php')
             ], 'config');
 
             $this->publishes([
