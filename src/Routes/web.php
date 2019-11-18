@@ -12,6 +12,14 @@ Route::group(['middleware' => ['web']], function () {
                     'names' => ['index' => 'users.home', 'show' => 'users.show']
                 ]);
             });
+            Route::group(['middleware' => ['permission:manage_druidapps']], function () {
+                Route::resource('apps', 'AppsController', [
+                    'only' => ['index', 'edit', 'create', 'store', 'update', 'destroy'],
+                    'names' => ['index' => 'apps.home']
+                ]);
+                Route::get('apps/{id}/refresh', 'AppsController@refresh')->name('apps.refresh');
+            });
+
         });
     });
 });

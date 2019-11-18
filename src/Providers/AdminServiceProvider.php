@@ -4,6 +4,8 @@ use Genetsis\Admin\Commands\CreateAdminUser;
 use Genetsis\Admin\Commands\CreatePermissions;
 use Genetsis\Admin\Commands\GenetsisAdminInstall;
 use Genetsis\Admin\Commands\InstallAdmin;
+use Genetsis\Admin\Commands\ManageDruidApps;
+use Genetsis\Admin\Commands\ManageUsers;
 use Genetsis\Admin\Extensions\AdminMenu;
 use Spatie\Permission\Middlewares\PermissionMiddleware;
 use Spatie\Permission\Middlewares\RoleMiddleware;
@@ -28,6 +30,7 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->handleRoutes();
         $this->publishResources();
         $this->handleCommands();
+        $this->handleMigrations();
 
         $this->app['router']->aliasMiddleware('role', RoleMiddleware::class);
         $this->app['router']->aliasMiddleware('permission', PermissionMiddleware::class);
@@ -37,6 +40,10 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
 
         if (config('genetsis_admin.manage_admin_users'))
             \AdminMenu::add('genetsis-admin::partials.menu.users_menu', [], 5);
+
+        if (config('genetsis_admin.manage_druid_apps'))
+            \AdminMenu::add('genetsis-admin::partials.menu.apps_menu', [], 10);
+
     }
 
     /**
@@ -49,6 +56,10 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->singleton('AdminMenu', function(){
             return new AdminMenu();
         });
+    }
+
+    private function handleMigrations() {
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 
     private function handleRoutes() {
@@ -76,7 +87,8 @@ class AdminServiceProvider extends \Illuminate\Support\ServiceProvider
             $this->commands([
                 CreateAdminUser::class,
                 InstallAdmin::class,
-                CreatePermissions::class
+                ManageDruidApps::class,
+                ManageUsers::class
             ]);
         }
     }

@@ -2,29 +2,25 @@
 
 namespace Genetsis\Admin\Commands;
 
-use App\User;
-use Genetsis\Admin\Database\Seeds\PermissionSeeder;
-use Genetsis\Admin\Database\Seeds\RolesSeeder;
-use Genetsis\Admin\Database\Seeds\UsersTableSeeder;
+use Genetsis\Admin\Database\Seeds\ManageUsersSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
 
-class CreatePermissions extends Command
+class ManageUsers extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'genetsis-admin:create-permissions';
+    protected $signature = 'genetsis-admin:manage-users';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create permissions: execute in old admins';
+    protected $description = 'Manage Users';
 
     /**
      * Create a new command instance.
@@ -46,8 +42,8 @@ class CreatePermissions extends Command
     {
         try {
 
-            Artisan::call('db:seed', ['--class' => PermissionSeeder::class, '--force' => true]);
-            $this->info('Permissions created');
+            Artisan::call('db:seed', ['--class' => ManageUsersSeeder::class, '--force' => true]);
+            $this->info('Manage Users Permissions');
 
         } catch (\Exception $e) {
             $this->error($e->getMessage());

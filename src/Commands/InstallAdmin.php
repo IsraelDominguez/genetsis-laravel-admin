@@ -2,13 +2,10 @@
 
 namespace Genetsis\Admin\Commands;
 
-use App\User;
-use Genetsis\Admin\Database\Seeds\PermissionSeeder;
+use Genetsis\Admin\Database\Seeds\ManageDruidAppsSeeder;
 use Genetsis\Admin\Database\Seeds\RolesSeeder;
-use Genetsis\Admin\Database\Seeds\UsersTableSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
 
 class InstallAdmin extends Command
 {
@@ -45,12 +42,19 @@ class InstallAdmin extends Command
     public function handle()
     {
         try {
-            Artisan::call('db:seed', ['--class' => RolesSeeder::class, '--force' => true]);
+            if ($this->confirm('Do you wish to create Roles?')) {
+                Artisan::call('db:seed', ['--class' => RolesSeeder::class, '--force' => true]);
+                $this->info('Roles created');
+            }
 
-            $this->info('Roles created');
-
-            Artisan::call('db:seed', ['--class' => PermissionSeeder::class, '--force' => true]);
-            $this->info('Permissions created');
+            if ($this->confirm('Do you wish to Manage Users?')) {
+                Artisan::call('db:seed', ['--class' => ManageUsers::class, '--force' => true]);
+                $this->info('Permissions created');
+            }
+            if ($this->confirm('Do you wish to Manage Druid Apps?')) {
+                Artisan::call('db:seed', ['--class' => ManageDruidAppsSeeder::class, '--force' => true]);
+                $this->info('Permissions created');
+            }
 
         } catch (\Exception $e) {
             $this->error($e->getMessage());
