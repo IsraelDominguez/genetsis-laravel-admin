@@ -3,6 +3,7 @@
 namespace Genetsis\Admin\Commands;
 
 use Genetsis\Admin\Database\Seeds\ManageDruidAppsSeeder;
+use Genetsis\Admin\Database\Seeds\ManageUsersSeeder;
 use Genetsis\Admin\Database\Seeds\RolesSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
@@ -48,7 +49,7 @@ class InstallAdmin extends Command
             }
 
             if ($this->confirm('Do you wish to Manage Users?')) {
-                Artisan::call('db:seed', ['--class' => ManageUsers::class, '--force' => true]);
+                Artisan::call('db:seed', ['--class' => ManageUsersSeeder::class, '--force' => true]);
                 $this->info('Permissions created');
             }
             if ($this->confirm('Do you wish to Manage Druid Apps?')) {

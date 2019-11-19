@@ -128,7 +128,7 @@ class AppsController extends AdminController
                     'name' => $druid_entrypoint->getDescription(),
                     'ids' => $ids,
                     'fields' => $fields,
-                    'app_id' => $druid_app->client_id
+                    'client_id' => $druid_app->client_id
                 ]
             );
         }
