@@ -124,19 +124,8 @@ class AppsController extends AdminController
 
         $druid_app = DruidApp::findOrFail($id);
 
-        if (empty($druid_app->selflink)) {
-            if (($druid_app->client_id) && ($druid_app->secret)) {
-                try {
-                    $app_from_druid = \RestApi::searchAppsBy(['key' => $druid_app->client_id]);
-                    $druid_app->selflink = $app_from_druid->getUri();
+        $this->getDruidEntrypoints($druid_app);
 
-                    $this->getDruidEntrypoints($druid_app);
-
-                } catch (\Exception $e) {
-                    \Log::debug('Error: ' . $e->getMessage());
-                }
-            }
-        }
         $druid_app->update($request->all());
 
         return redirect()->route('apps.home')
@@ -167,6 +156,17 @@ class AppsController extends AdminController
      */
     private function getDruidEntrypoints(DruidApp $druidApp)
     {
+        if (empty($druidApp->selflink)) {
+            try {
+                $app_from_druid = \RestApi::searchAppsBy(['key' => $druidApp->client_id]);
+                $druidApp->selflink = $app_from_druid->getUri();
+
+                $druidApp->save();
+            } catch (\Exception $e) {
+                \Log::debug('Error: ' . $e->getMessage());
+            }
+        }
+
         $druid_entrypoints = \RestApi::searchEntrypointsBy(['app' => $druidApp->client_id]);
 
         $entrypoints = [];
