@@ -3,6 +3,7 @@
 use Genetsis\Admin\Models\DruidApp;
 use Genetsis\Admin\Models\Entrypoint;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 
 class AppsController extends AdminController
@@ -47,47 +48,7 @@ class AppsController extends AdminController
     {
         $druid_app = DruidApp::findOrFail($id);
 
-        $druid_entrypoints = \RestApi::searchEntrypointsBy(['app'=>$id]);
-
-        $entrypoints = [];
-
-        foreach ($druid_entrypoints->getResources('entrypoints') as $druid_entrypoint) {
-
-            $fields = collect($druid_entrypoint->getConfigField())->map(function ($field) {
-                return $field->getField()->getKey();
-            })->toJson();
-
-            $ids = collect($druid_entrypoint->getConfigId())->map(function ($idfield) {
-                return $idfield->getField()->getName();
-            })->toJson();
-
-            $entrypoint = new Entrypoint();
-            $entrypoint->key = $druid_entrypoint->getKey();
-            $entrypoint->name = $druid_entrypoint->getDescription();
-            $entrypoint->ids = $ids;
-            $entrypoint->fields = $fields;
-
-            array_push($entrypoints, $entrypoint);
-        }
-
-
-        $druid_app->entrypoints()->each(function($relation) use ($entrypoints){
-            if (!collect($entrypoints)->contains('key', $relation->key)) {
-                return $relation->delete();
-            }
-        });
-
-        collect($entrypoints)->map(function($entrypoint) use ($druid_app) {
-            $druid_app->entrypoints()->updateOrCreate(
-                ['key' => $entrypoint->key],
-                [
-                    'name' => $entrypoint->name,
-                    'ids' => json_encode($entrypoint->ids),
-                    'fields' => json_encode($entrypoint->fields)
-                ]
-            );
-        });
-
+        $this->getDruidEntrypoints($druid_app);
 
         return redirect()->route('apps.edit', $id)
             ->with('success','Entrypoints refresh successfully');
@@ -111,27 +72,7 @@ class AppsController extends AdminController
 
         $druid_app = DruidApp::create($request->all());
 
-        $druid_entrypoints = \RestApi::searchEntrypointsBy(['app'=>$druid_app->client_id]);
-
-        foreach ($druid_entrypoints->getResources('entrypoints') as $druid_entrypoint) {
-            $fields = collect($druid_entrypoint->getConfigField())->map(function ($field) {
-                return $field->getField()->getKey();
-            })->toJson();
-
-            $ids = collect($druid_entrypoint->getConfigId())->map(function ($idfield) {
-                return $idfield->getField()->getName();
-            })->toJson();
-
-            Entrypoint::updateOrCreate(
-                ['key' => $druid_entrypoint->getKey()],
-                [
-                    'name' => $druid_entrypoint->getDescription(),
-                    'ids' => $ids,
-                    'fields' => $fields,
-                    'client_id' => $druid_app->client_id
-                ]
-            );
-        }
+        $this->getDruidEntrypoints($druid_app);
 
         return redirect()->route('apps.home')
             ->with('success','Druid App created successfully');
@@ -183,6 +124,19 @@ class AppsController extends AdminController
 
         $druid_app = DruidApp::findOrFail($id);
 
+        if (empty($druid_app->selflink)) {
+            if (($druid_app->client_id) && ($druid_app->secret)) {
+                try {
+                    $app_from_druid = \RestApi::searchAppsBy(['key' => $druid_app->client_id]);
+                    $druid_app->selflink = $app_from_druid->getUri();
+
+                    $this->getDruidEntrypoints($druid_app);
+
+                } catch (\Exception $e) {
+                    \Log::debug('Error: ' . $e->getMessage());
+                }
+            }
+        }
         $druid_app->update($request->all());
 
         return redirect()->route('apps.home')
@@ -203,5 +157,63 @@ class AppsController extends AdminController
         return redirect()->route('apps.home')
             ->with('success','Druid App deleted successfully');
     }
+
+
+
+    /**
+     * Get Druid Entrypoints for a DruidApp
+     *
+     * @param DruidApp $druidApp
+     */
+    private function getDruidEntrypoints(DruidApp $druidApp)
+    {
+        $druid_entrypoints = \RestApi::searchEntrypointsBy(['app' => $druidApp->client_id]);
+
+        $entrypoints = [];
+
+        foreach ($druid_entrypoints->getResources('entrypoints') as $druid_entrypoint) {
+
+            $fields = collect($druid_entrypoint->getConfigField())->filter(function($field) {
+                return $field->getField() != null;
+            })->map(function ($field) {
+                return $field->getField()->getKey();
+            })->toJson();
+
+            $ids = collect($druid_entrypoint->getConfigId())->filter(function($field) {
+                return $field->getField() != null;
+            })->map(function ($idfield) {
+                return $idfield->getField()->getName();
+            })->toJson();
+
+            $entrypoint = new Entrypoint();
+            $entrypoint->key = $druid_entrypoint->getKey();
+            $entrypoint->name = $druid_entrypoint->getDescription();
+            $entrypoint->ids = $ids;
+            $entrypoint->fields = $fields;
+            $entrypoint->selflink = $druid_entrypoint->getLinkByType('self');
+
+            array_push($entrypoints, $entrypoint);
+        }
+
+
+        $druidApp->entrypoints()->each(function ($relation) use ($entrypoints) {
+            if (!collect($entrypoints)->contains('key', $relation->key)) {
+                return $relation->delete();
+            }
+        });
+
+        collect($entrypoints)->map(function ($entrypoint) use ($druidApp) {
+            $druidApp->entrypoints()->updateOrCreate(
+                ['key' => $entrypoint->key],
+                [
+                    'name' => $entrypoint->name,
+                    'ids' => json_encode($entrypoint->ids),
+                    'fields' => json_encode($entrypoint->fields),
+                    'selflink'=> $entrypoint->selflink
+                ]
+            );
+        });
+    }
+
 
 }

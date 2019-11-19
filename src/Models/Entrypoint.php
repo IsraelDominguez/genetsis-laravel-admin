@@ -19,7 +19,7 @@ class Entrypoint extends Model
      */
     protected $table = 'entrypoints';
 
-    protected $fillable = ['key', 'client_id', 'name', 'ids', 'fields'];
+    protected $fillable = ['key', 'client_id', 'name', 'ids', 'fields', 'selflink'];
 
     protected $primaryKey = 'key';
     public $keyType = 'string';

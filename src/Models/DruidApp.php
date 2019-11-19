@@ -20,7 +20,7 @@ class DruidApp extends Model
      */
     protected $table = 'druid_apps';
 
-    protected $fillable = ['client_id', 'secret', 'name'];
+    protected $fillable = ['client_id', 'secret', 'name', 'selflink'];
 
     protected $hidden = ['secret'];
 
