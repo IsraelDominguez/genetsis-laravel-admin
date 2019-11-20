@@ -36,11 +36,6 @@ class DruidApp extends Model
     protected static $logOnlyDirty = true;
 
 
-    public function getLogoAttribute($value) {
-        return (empty($value)) ? $this->brand->logo : $value;
-    }
-
-
     /**
      * Get the Entrypoints associated to this Druid App
      *
