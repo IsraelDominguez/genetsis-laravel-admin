@@ -75,3 +75,18 @@ table.dataTable th:active {
 .options-delete {
     padding-left: 0px !important;
 }
+
+
+
+.content__title {
+    margin-bottom: 1rem;
+}
+
+
+.content:not(.content--boxed):not(.content--full) {
+    padding-top: 80px;
+}
+
+.sidebar {
+    padding-top: 80px;
+}
