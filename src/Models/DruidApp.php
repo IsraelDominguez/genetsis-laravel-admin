@@ -9,8 +9,6 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class DruidApp extends Model
 {
-    use LogsActivity;
-
     use Encryptable;
 
     /**
