@@ -10,17 +10,8 @@ class GtmServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-
-    }
 
     /**
      * Register the application services.
@@ -33,5 +24,13 @@ class GtmServiceProvider extends \Illuminate\Support\ServiceProvider
             return App::make(config('genetsis_admin.gtm'));
         });
     }
-
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['GtmEvents', config('genetsis_admin.gtm')];
+    }
 }

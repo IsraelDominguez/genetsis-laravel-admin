@@ -23,7 +23,7 @@ class EventFactory
         return GtmEvent::i()->setCategory('Coupon')->setAction('Downloaded')->setLabel($promotion);
     }
 
-    public static function winnner(string $promotion) {
+    public static function winner(string $promotion) {
         return GtmEvent::i()->setCategory('Prize')->setAction('Won')->setLabel($promotion);
     }
 
