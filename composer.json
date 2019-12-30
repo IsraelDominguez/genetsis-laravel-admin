@@ -15,7 +15,8 @@
         "israeldominguez/laravel-themes": "dev-master",
         "israeldominguez/laravel-logviewer": "dev-master",
         "yajra/laravel-datatables-oracle": "^9.0@dev",
-        "israeldominguez/druid-rest-api": "dev-master"
+        "israeldominguez/druid-rest-api": "dev-master",
+        "irazasyed/laravel-gamp": "^1.3.0"
     },
     "require-dev": {
         "illuminate/support": "~5.5.0",
@@ -45,7 +46,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Genetsis\\Admin\\Providers\\AdminServiceProvider"
+                "Genetsis\\Admin\\Providers\\AdminServiceProvider",
+                "Genetsis\\Admin\\Providers\\GtmServiceProvider"
             ],
             "aliases": {
                 "AdminMenu": "Genetsis\\Admin\\Facades\\AdminMenuFacade"
