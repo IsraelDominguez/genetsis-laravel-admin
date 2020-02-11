@@ -1,6 +1,6 @@
 <?php namespace Genetsis\Admin\Utils\GTM;
 
-class GtmEvent
+class GtmEvent implements \JsonSerializable
 {
     /**
      * @var string category event
@@ -170,6 +170,15 @@ class GtmEvent
     {
         $this->host_name = $host_name;
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'category' =>$this->getCategory(),
+            'action' => $this->getAction(),
+            'label' => $this->getLabel()
+        ];
     }
 
 }
