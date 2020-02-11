@@ -47,14 +47,6 @@ class GtmEvent
     }
 
     /**
-     * Instance Builder
-     * @return GtmEvent Event
-     */
-    public static function i() {
-        return new GtmEvent();
-    }
-
-    /**
      * @return string
      */
     public function getCategory(): string

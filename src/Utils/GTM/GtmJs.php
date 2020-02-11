@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\App;
 
 class GtmJs implements GtmInterface
 {
-    protected $events = array();
+    protected $events = [];
 
     public function __construct()
     {
