@@ -15,7 +15,7 @@
         "israeldominguez/laravel-themes": "dev-master",
         "israeldominguez/laravel-logviewer": "dev-master",
         "yajra/laravel-datatables-oracle": "^9.0@dev",
-        "israeldominguez/druid-rest-api": "dev-master",
+        "dru-id/druid-rest-api": "dev-master",
         "irazasyed/laravel-gamp": "^1.3.0"
     },
     "require-dev": {
@@ -40,7 +40,7 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/israeldominguez/druid-rest-api"
+            "url": "https://github.com/dru-id/druid-rest-api"
         }
     ],
     "extra": {
