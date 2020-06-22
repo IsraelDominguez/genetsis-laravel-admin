@@ -12,8 +12,8 @@
         "php": "^7.0",
         "spatie/laravel-activitylog": "3.8.0",
         "spatie/laravel-permission": "dev-master",
-        "israeldominguez/laravel-themes": "dev-master",
-        "israeldominguez/laravel-logviewer": "dev-master",
+        "dru-id/laravel-themes": "dev-master",
+        "dru-id/laravel-logviewer": "dev-master",
         "yajra/laravel-datatables-oracle": "^9.0@dev",
         "dru-id/druid-rest-api": "dev-master",
         "irazasyed/laravel-gamp": "^1.3.0"
@@ -32,11 +32,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/israeldominguez/laravel-themes"
+            "url": "https://github.com/dru-id/laravel-themes"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/israeldominguez/laravel-logviewer"
+            "url": "https://github.com/dru-id/laravel-logviewer"
         },
         {
             "type": "vcs",
