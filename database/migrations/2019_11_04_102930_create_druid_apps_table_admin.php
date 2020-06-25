@@ -14,17 +14,18 @@ class CreateDruidAppsTableAdmin extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
+        if (!Schema::hasTable('druid_apps')) {
+            Schema::create('druid_apps', function (Blueprint $table) {
+                $table->string('client_id', 20)->unique()->comment('Client ID in Druid');;
+                $table->string('secret', 300)->nullable();
+                $table->string('name', 100);
+                $table->binary('logo')->nullable()->comment('base64 image');
 
-        Schema::create('druid_apps', function (Blueprint $table) {
-            $table->string('client_id', 20)->unique()->comment('Client ID in Druid');;
-            $table->string('secret', 300)->nullable();
-            $table->string('name', 100);
-            $table->binary('logo')->nullable()->comment('base64 image');
+                $table->primary('client_id');
+            });
 
-            $table->primary('client_id');
-        });
-
-        \Illuminate\Support\Facades\DB::statement("ALTER TABLE `druid_apps` CHANGE `logo` `logo` LONGBLOB NULL DEFAULT NULL COMMENT 'base64 image';");
+            \Illuminate\Support\Facades\DB::statement("ALTER TABLE `druid_apps` CHANGE `logo` `logo` LONGBLOB NULL DEFAULT NULL COMMENT 'base64 image';");
+        }
     }
 
     /**

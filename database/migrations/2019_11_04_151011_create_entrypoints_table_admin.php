@@ -14,18 +14,19 @@ class CreateEntrypointsTableAdmin extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
+        if (!Schema::hasTable('entrypoints')) {
+            Schema::create('entrypoints', function (Blueprint $table) {
+                $table->string('key', 200)->unique();
+                $table->string('name', 200);
+                $table->string('client_id', 20)->comment('Client ID in Druid');
+                $table->text('ids')->comment('Json with ids fields');
+                $table->text('fields')->comment('Json with data fields');
 
-        Schema::create('entrypoints', function (Blueprint $table) {
-            $table->string('key', 200)->unique();
-            $table->string('name', 200);
-            $table->string('client_id', 20)->comment('Client ID in Druid');
-            $table->text('ids')->comment('Json with ids fields');
-            $table->text('fields')->comment('Json with data fields');
+                $table->primary('key');
 
-            $table->primary('key');
-
-            $table->foreign('client_id')->references('client_id')->on('druid_apps');
-        });
+                $table->foreign('client_id')->references('client_id')->on('druid_apps');
+            });
+        }
     }
 
     /**
